@@ -3,6 +3,7 @@ const sequelize = require('./config/database');
 const userRoutes = require('./routes/userRoutes');
 const roomRoutes = require('./routes/roomRoutes');
 require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
 app.use((req, res, next) => {
@@ -10,6 +11,8 @@ app.use((req, res, next) => {
     next();
   });
 
+
+app.use(cors());
 app.use(express.json());
 
 app.use('/api', userRoutes);
