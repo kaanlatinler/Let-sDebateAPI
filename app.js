@@ -1,7 +1,10 @@
 const express = require('express');
-const sequelize = require('./config/database');
+const sequelize = require('./utils/database');
+
+const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
-const roomRoutes = require('./routes/roomRoutes');
+
+
 require('dotenv').config();
 const cors = require('cors');
 
@@ -15,11 +18,13 @@ app.use((req, res, next) => {
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', userRoutes);
-app.use('/api', roomRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+
+const PORT = process.env.PORT || 5000;
 
 sequelize.sync().then(() => {
-  app.listen(5000, () => {
-    console.log(`Server is running on port ${5000}`);
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
   });
 });
