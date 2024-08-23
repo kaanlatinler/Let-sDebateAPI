@@ -7,6 +7,7 @@ const userRoutes = require('./routes/userRoutes');
 
 require('dotenv').config();
 const cors = require('cors');
+const authenticateToken = require('./middleware/authMiddleware');
 
 const app = express();
 app.use((req, res, next) => {
