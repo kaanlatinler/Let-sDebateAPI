@@ -68,7 +68,7 @@ exports.getRandomTenTopics = async (req, res, next) => {
     try {
         const topics = await Topics.findAll();
         const randomTopics = topics.sort(() => 0.5 - Math.random()).slice(0, 10);
-        res.status(200).json(randomTopics);
+        res.status(200).json({message: 'Random 10 topics'});
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
