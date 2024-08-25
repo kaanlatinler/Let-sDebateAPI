@@ -1,4 +1,3 @@
-const sequelize = require('../utils/database');
 const Users = require('../models/Users');
 
 exports.getAllUsers = async (req, res, next) => {
