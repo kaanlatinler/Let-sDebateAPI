@@ -4,7 +4,7 @@ const topicController = require('../controllers/topicController');
 
 router.get('/getAllTopics', topicController.getAllTopics);
 router.get('/getTopicById/:id', topicController.getTopicById);
-router.get('/getRandomTenTopics', topicController.getRandomTenTopics);
+router.get('/getRandomTwelveTopics', topicController.getRandomTwelveTopics);
 router.post('/createTopic', topicController.createTopic);
 router.put('/updateTopic/:id', topicController.updateTopic);
 router.delete('/deleteTopic/:id', topicController.deleteTopic);

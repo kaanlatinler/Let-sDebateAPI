@@ -65,10 +65,10 @@ exports.deleteTopic = async (req, res, next) => {
 
 // ----------------- Custom Functions -----------------
 
-exports.getRandomTenTopics = async (req, res, next) => {
+exports.getRandomTwelveTopics = async (req, res, next) => {
     try {
         const topics = await Topics.findAll();
-        const randomTopics = topics.sort(() => 0.5 - Math.random()).slice(0, 10);
+        const randomTopics = topics.sort(() => 0.5 - Math.random()).slice(0, 12);
         res.status(200).json({randomTopics});
     } catch (error) {
         res.status(500).json({ message: error.message });
