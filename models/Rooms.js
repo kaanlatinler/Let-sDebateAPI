@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
+const RoomStatus = require('./RoomStatus');
+const Topic = require('./Topics');
+
 const Rooms = sequelize.define('Rooms', {
     RoomId: {
         type: DataTypes.UUID,
@@ -30,6 +33,14 @@ const Rooms = sequelize.define('Rooms', {
 }, {
     tableName: 'Rooms',
     timestamps: false
+});
+
+Rooms.belongsTo(Topic, {
+    foreignKey: 'TopicId'
+});
+
+Rooms.belongsTo(RoomStatus, {
+    foreignKey: 'StatusId'
 });
 
 module.exports = Rooms;

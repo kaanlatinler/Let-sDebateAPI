@@ -63,6 +63,7 @@ exports.deleteTopic = async (req, res, next) => {
     }
 };
 
+// ----------------- Custom Functions -----------------
 
 exports.getRandomTenTopics = async (req, res, next) => {
     try {
