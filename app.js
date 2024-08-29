@@ -11,6 +11,7 @@ require('dotenv').config();
 const cors = require('cors');
 
 const app = express();
+
 app.use((req, res, next) => {
     console.log(`${req.method} request to ${req.originalUrl}`);
     next();

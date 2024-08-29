@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const topicController = require('../controllers/topicController');
+const authenticateToken = require('../middleware/authMiddleware'); 
 
-router.get('/getAllTopics', topicController.getAllTopics);
-router.get('/getTopicById/:id', topicController.getTopicById);
-router.get('/getRandomTwelveTopics', topicController.getRandomTwelveTopics);
-router.post('/createTopic', topicController.createTopic);
-router.put('/updateTopic/:id', topicController.updateTopic);
-router.delete('/deleteTopic/:id', topicController.deleteTopic);
+router.get('/getAllTopics', authenticateToken, topicController.getAllTopics);
+router.get('/getTopicById/:id', authenticateToken, topicController.getTopicById);
+router.get('/getRandomTwelveTopics', authenticateToken, topicController.getRandomTwelveTopics);
+router.post('/createTopic', authenticateToken, topicController.createTopic);
+router.put('/updateTopic/:id', authenticateToken, topicController.updateTopic);
+router.delete('/deleteTopic/:id', authenticateToken, topicController.deleteTopic);
 
 module.exports = router;
