@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
+const FriendStatus = require('./FriendStatus');
+const Users = require('./Users');
+
 const Friends = sequelize.define('Friends', {
     FriendsId: {
         type: DataTypes.UUID,
@@ -32,6 +35,20 @@ const Friends = sequelize.define('Friends', {
             fields: ['UserId', 'FriendId']
         }
     ]
+});
+
+Friends.belongsTo(FriendStatus, {
+    foreignKey: 'StatusID'
+});
+
+Friends.belongsTo(Users, {
+    foreignKey: 'UserId',
+    as: 'User'
+});
+
+Friends.belongsTo(Users, {
+    foreignKey: 'FriendId',
+    as: 'Friend'
 });
 
 module.exports = Friends;

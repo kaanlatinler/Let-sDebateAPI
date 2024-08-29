@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
+const Roles = require('./Roles');
+
 const Users = sequelize.define('Users', {
     UserId: {
         type: DataTypes.UUID,
@@ -31,6 +33,10 @@ const Users = sequelize.define('Users', {
         type: DataTypes.INTEGER,
         defaultValue: null
     },
+    CurrentToken: {
+        type: DataTypes.STRING,
+        defaultValue: null
+    },
     CreatedDate: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
@@ -50,6 +56,10 @@ const Users = sequelize.define('Users', {
 }, {
     tableName: 'Users',
     timestamps: false
+});
+
+Users.belongsTo(Roles, { 
+    foreignKey: 'RoleId' 
 });
 
 module.exports = Users;

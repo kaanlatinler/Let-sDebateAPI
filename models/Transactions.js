@@ -1,6 +1,9 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
+const Users = require('./Users');
+const TransactionTypes = require('./TransactionTypes');
+
 const Transactions = sequelize.define('Transactions', {
     TransactionId: {
         type: DataTypes.UUID,
@@ -26,6 +29,14 @@ const Transactions = sequelize.define('Transactions', {
 }, {
     tableName: 'Transactions',
     timestamps: false
+});
+
+Transactions.belongsTo(Users, {
+    foreignKey: 'UserId'
+});
+
+Transactions.belongsTo(TransactionTypes, {
+    foreignKey: 'TransactionTypeId'
 });
 
 module.exports = Transactions;
