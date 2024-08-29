@@ -20,7 +20,12 @@ app.use((req, res, next) => {
   });
 
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: 'http://orionn.xyz',
+        credentials: true
+    }
+));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
