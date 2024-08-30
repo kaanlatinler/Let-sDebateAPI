@@ -42,7 +42,7 @@ const Users = sequelize.define('Users', {
         allowNull: false
     },
     DateOfBirth: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATETIME,
         defaultValue: null
     },
     ProfilePicture: {

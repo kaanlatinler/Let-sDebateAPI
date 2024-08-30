@@ -26,8 +26,22 @@ exports.Login = async (req, res, next) => {
 exports.Register = async (req, res, next) => {
   try {
     const { UserName, UserLastName, NickName, UserEmail, UserPassword, UserPoints, RoleId, DateOfBirth, ProfilePicture } = req.body;
-    const user = await User.create({ UserName, UserLastName, NickName, UserEmail, UserPassword, UserPoints, RoleId, DateOfBirth, ProfilePicture });
-    res.status(201).json({ user, success: true });
+
+    const formattedDateOfBirth = new Date(DateOfBirth);
+    
+    const user = await User.create({ 
+        UserName, 
+        UserLastName, 
+        NickName, 
+        UserEmail, 
+        UserPassword, 
+        UserPoints, 
+        RoleId, 
+        DateOfBirth: formattedDateOfBirth, 
+        ProfilePicture 
+    });
+    
+    res.status(201).json({ user, success: true });    
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }
