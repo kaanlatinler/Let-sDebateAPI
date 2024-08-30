@@ -16,6 +16,8 @@ const cors = require('cors');
 
 const app = express();
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 app.use((req, res, next) => {
     console.log(`${req.method} request to ${req.originalUrl}`);
     next();
