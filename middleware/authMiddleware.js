@@ -20,12 +20,6 @@ const authenticateToken = async (req, res, next) => {
         return res.status(404).json({ message: 'User not found', success: false});
       }
 
-      const userToken = userFromToken.CurrentToken;
-
-      if (token !== userToken) {
-        return res.status(403).json({ message: 'Invalid token', success: false });
-      }
-
       req.user = userFromToken;
       next();
     });

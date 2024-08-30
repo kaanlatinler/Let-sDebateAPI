@@ -33,10 +33,6 @@ const Users = sequelize.define('Users', {
         type: DataTypes.INTEGER,
         defaultValue: null
     },
-    CurrentToken: {
-        type: DataTypes.STRING,
-        defaultValue: null
-    },
     CreatedDate: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW

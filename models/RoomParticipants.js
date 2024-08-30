@@ -24,4 +24,12 @@ const RoomParticipants = sequelize.define('RoomParticipants', {
     timestamps: false
 });
 
+RoomParticipants.belongsTo(require('./Rooms'), {
+    foreignKey: 'RoomId'
+});
+
+RoomParticipants.belongsTo(require('./Users'), {
+    foreignKey: 'UserId'
+});
+
 module.exports = RoomParticipants;
