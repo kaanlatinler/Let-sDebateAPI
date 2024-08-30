@@ -2,9 +2,7 @@ const Rooms = require('../../models/Rooms');
 
 exports.getRoomsByTopicId = async (req, res, next) => {
     try {
-        const { id } = req.params;
         const rooms = await Rooms.findAll({
-            where: { TopicId: id },
             include: [
             {
                 model: require('../../models/RoomStatus'),
