@@ -27,8 +27,6 @@ exports.Register = async (req, res, next) => {
   try {
     const { UserName, UserLastName, NickName, UserEmail, UserPassword, UserPoints, RoleId, DateOfBirth, ProfilePicture } = req.body;
 
-    const formattedDateOfBirth = DateOfBirth ? new Date(DateOfBirth).toISOString().split('T')[0] : null;
-
     const user = await User.create({ 
         UserName, 
         UserLastName, 
@@ -37,12 +35,11 @@ exports.Register = async (req, res, next) => {
         UserPassword, 
         UserPoints, 
         RoleId, 
-        DateOfBirth: formattedDateOfBirth, 
+        DateOfBirth, 
         ProfilePicture 
     });
 
     res.status(201).json({ user, success: true });
-  
   } catch (error) {
     res.status(500).json({ message: error.message, success: false });
   }

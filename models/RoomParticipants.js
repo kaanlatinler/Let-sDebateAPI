@@ -1,5 +1,7 @@
-const { DataTypes } = require('@sequelize/core');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
+const Rooms = require('./Rooms');
+const Users = require('./Users');
 
 const RoomParticipants = sequelize.define('RoomParticipants', {
     ParticipantId: {
@@ -24,11 +26,11 @@ const RoomParticipants = sequelize.define('RoomParticipants', {
     timestamps: false
 });
 
-RoomParticipants.belongsTo(require('./Rooms'), {
+RoomParticipants.belongsTo(Rooms, {
     foreignKey: 'RoomId'
 });
 
-RoomParticipants.belongsTo(require('./Users'), {
+RoomParticipants.belongsTo(Users, {
     foreignKey: 'UserId'
 });
 

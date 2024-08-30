@@ -1,23 +1,26 @@
-const { Sequelize } = require('@sequelize/core');
-const { MsSqlDialect } = require('@sequelize/mssql');
+const { Sequelize } = require('sequelize');
 
 const config = require('../config/config').development;
 
-const sequelize = new Sequelize({
-    dialect: MsSqlDialect,
-    server: config.host,
-    port: 1433,
-    database: config.database,
-    authentication: {
-        type: 'default',
-        options: {
-            userName: config.username,
-            password: config.password,
-        },
+const sequelize = new Sequelize(config.database, config.username, config.password, {
+    host: config.host,
+    dialect: 'mssql',
+    dialectOptions: {
+      options: {
+        encrypt: true,
+        trustServerCertificate: true,
+      }
     },
-    encrypt: true,
-    trustServerCertificate: true,
-    enableArithAbort: true
-});
+    logging: false,
+  });
+
+  (async () => {
+    try {
+      await sequelize.authenticate();
+      console.log('MSSQL bağlantısı başarıyla sağlandı.');
+    } catch (error) {
+      console.error('Bağlantı sağlanamadı:', error);
+    }
+  })();
 
 module.exports = sequelize;

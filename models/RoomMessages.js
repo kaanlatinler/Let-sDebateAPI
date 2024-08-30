@@ -1,4 +1,4 @@
-const { DataTypes } = require('@sequelize/core');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
 const RoomMessages = sequelize.define('RoomMessages', {
@@ -26,6 +26,14 @@ const RoomMessages = sequelize.define('RoomMessages', {
 }, {
     tableName: 'RoomMessages',
     timestamps: false
+});
+
+RoomMessages.belongsTo(require('./Rooms'), {
+    foreignKey: 'RoomId'
+});
+
+RoomMessages.belongsTo(require('./Users'), {
+    foreignKey: 'UserId'
 });
 
 module.exports = RoomMessages;

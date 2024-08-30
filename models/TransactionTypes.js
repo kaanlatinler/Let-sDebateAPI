@@ -1,4 +1,4 @@
-const { DataTypes } = require('@sequelize/core');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
 const TransactionTypes = sequelize.define('TransactionTypes', {
@@ -9,7 +9,8 @@ const TransactionTypes = sequelize.define('TransactionTypes', {
     },
     TypeName: {
         type: DataTypes.STRING(20),
-        allowNull: false
+        allowNull: false,
+        unique: true // Transaction type'ların benzersiz olması mantıklı olabilir
     }
 }, {
     tableName: 'TransactionTypes',

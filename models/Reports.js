@@ -1,4 +1,4 @@
-const { DataTypes } = require('@sequelize/core');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
 const Reports = sequelize.define('Reports', {
@@ -24,8 +24,7 @@ const Reports = sequelize.define('Reports', {
         allowNull: false
     },
     ReportDetails: {
-        type: DataTypes.TEXT,
-        defaultValue: null
+        type: DataTypes.TEXT
     },
     CreatedDate: {
         type: DataTypes.DATE,
@@ -34,6 +33,24 @@ const Reports = sequelize.define('Reports', {
 }, {
     tableName: 'Reports',
     timestamps: false
+});
+
+Reports.belongsTo(require('./Reasons'), {
+    foreignKey: 'ReasonID'
+});
+
+Reports.belongsTo(require('./Rooms'), {
+    foreignKey: 'RoomId'
+});
+
+Reports.belongsTo(require('./Users'), {
+    foreignKey: 'ReportedBy',
+    as: 'Reporter'
+});
+
+Reports.belongsTo(require('./Users'), {
+    foreignKey: 'ReportedUserID',
+    as: 'ReportedUser'
 });
 
 module.exports = Reports;

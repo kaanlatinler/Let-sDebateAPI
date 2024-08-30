@@ -1,4 +1,4 @@
-const { DataTypes } = require('@sequelize/core');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
 const Roles = sequelize.define('Roles', {
@@ -9,7 +9,8 @@ const Roles = sequelize.define('Roles', {
     },
     RoleName: {
         type: DataTypes.STRING(20),
-        allowNull: false
+        allowNull: false,
+        unique: true
     }
 }, {
     tableName: 'Roles',

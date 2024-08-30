@@ -1,6 +1,5 @@
-const { DataTypes } = require('@sequelize/core');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
-
 const Roles = require('./Roles');
 
 const Users = sequelize.define('Users', {
@@ -23,15 +22,16 @@ const Users = sequelize.define('Users', {
     },
     UserEmail: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: false,
+        unique: true // Email'in unique olmasını sağlar
     },
     UserPassword: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(60), // Parola için daha uzun bir alan kullanılması önerilir
         allowNull: false
     },
     UserPoints: {
         type: DataTypes.INTEGER,
-        defaultValue: null
+        defaultValue: 0 // null yerine 0 daha mantıklı olabilir
     },
     CreatedDate: {
         type: DataTypes.DATE,
@@ -42,12 +42,10 @@ const Users = sequelize.define('Users', {
         allowNull: false
     },
     DateOfBirth: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
+        type: DataTypes.DATE
     },
     ProfilePicture: {
-        type: DataTypes.TEXT,
-        defaultValue: null
+        type: DataTypes.TEXT
     }
 }, {
     tableName: 'Users',

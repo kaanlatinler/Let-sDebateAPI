@@ -1,6 +1,5 @@
-const { DataTypes } = require('@sequelize/core');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
-
 const RoomStatus = require('./RoomStatus');
 const Topic = require('./Topics');
 
@@ -19,12 +18,10 @@ const Rooms = sequelize.define('Rooms', {
         allowNull: false
     },
     DurationLimit: {
-        type: DataTypes.INTEGER,
-        defaultValue: null
+        type: DataTypes.INTEGER
     },
     TotalDuration: {
-        type: DataTypes.INTEGER,
-        defaultValue: null
+        type: DataTypes.INTEGER
     },
     CreatedDate: {
         type: DataTypes.DATE,

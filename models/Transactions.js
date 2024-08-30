@@ -1,6 +1,5 @@
-const { DataTypes } = require('@sequelize/core');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
-
 const Users = require('./Users');
 const TransactionTypes = require('./TransactionTypes');
 

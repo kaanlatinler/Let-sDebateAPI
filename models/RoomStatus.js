@@ -1,4 +1,4 @@
-const { DataTypes } = require('@sequelize/core');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../utils/database');
 
 const RoomStatus = sequelize.define('RoomStatus', {
@@ -9,7 +9,8 @@ const RoomStatus = sequelize.define('RoomStatus', {
     },
     StatusName: {
         type: DataTypes.STRING(10),
-        allowNull: false
+        allowNull: false,
+        unique: true
     }
 }, {
     tableName: 'RoomStatus',
