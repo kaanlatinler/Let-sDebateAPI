@@ -22,9 +22,11 @@ exports.getRoomParticipantById = async (req, res, next) => {
     }
 };
 
+
 exports.createRoomParticipant = async (req, res, next) => {
     try {
-        const { RoomId, UserId } = req.body;
+        const UserId = req.user.UserId;
+        const { RoomId } = req.body;
         const participant = await RoomParticipants.create({ RoomId, UserId });
         res.status(201).json({participant, success: true});
     } catch (error) {
